@@ -6,6 +6,7 @@ export const fpy = async (
     ? process.env.VERCEL_URL
     : '0.0.0.0:5328';
     console.log(process.env.VERCEL_ENV)
+    console.log(process.env.VERCEL_URL)
 
     const res = await fetch("http://" + url + path)
     let result = await res.text();
