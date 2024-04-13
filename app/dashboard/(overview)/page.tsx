@@ -2,12 +2,16 @@ import CardWrapper from '@/app/ui/dashboard/cards';
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import { lusitana } from '@/app/ui/fonts';
 import { CardsSkeleton, LatestInvoicesSkeleton, RevenueChartSkeleton } from '@/app/ui/skeletons';
+import Link from 'next/link';
 import { Suspense } from 'react';
 import LatestInvoices from '../../ui/dashboard/latest-invoices';
  
 export default async function Page() {
   return (
     <main>
+      <Link href="/api/python">
+            <code className="font-mono font-bold">api/index.py</code>
+          </Link>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         Dashboard
       </h1>

@@ -2,9 +2,13 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
+    "flask-dev": "FLASK_DEBUG=1 pip3 install -r requirements.txt && python3 -m flask --app api/index run -p 5328",
+    "flask-dev-win": "set FLASK_DEBUG=1 && pip3 install -r requirements.txt && python -m flask --app api/index run -p 5328",
+    "next-dev": "next dev",
+    "dev": "concurrently \"pnpm run next-dev\" \"pnpm run flask-dev\"",
+    "dev-win": "concurrently \"pnpm run next-dev\" \"pnpm run flask-dev-win\"",
     "start": "next start",
     "lint": "next lint",
     "seed": "node -r dotenv/config ./scripts/seed.js"
@@ -25,7 +29,12 @@
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",
     "use-debounce": "^10.0.0",
-    "zod": "^3.22.2"
+    "zod": "^3.22.2",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
+    "concurrently": "^8.0.1",
+    "eslint": "8.40.0",
+    "eslint-config-next": "13.4.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.1",
