@@ -8,7 +8,7 @@ export const fpy = async (
     console.log(process.env.VERCEL_ENV)
     console.log(process.env.VERCEL_URL)
 
-    const res = await fetch("http://" + url + path)
+    const res = await fetch("http://" + url + ":5328" + path)
     let result = await res.text();
     return result;
   };
