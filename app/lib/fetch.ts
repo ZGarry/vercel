@@ -3,7 +3,7 @@ export const fpy = async (
     path: string
   ) => {
     const url =  process.env.VERCEL_ENV === 'production'
-    ? process.env.VERCEL_URL
+    ? process.env.API_URL
     : '0.0.0.0:5328';
     console.log(process.env.VERCEL_ENV)
     console.log(process.env.VERCEL_URL)
