@@ -9,7 +9,7 @@ export const fpy = async (
     console.log(process.env.VERCEL_URL)
     // 他用link是想我们整个页面都用python！？
 
-    const res = await fetch("http://" + url + ":5328" + path)
+    const res = await fetch(url + path)
     let result = await res.text();
     return result;
   };
