@@ -11,3 +11,13 @@ def hello_world():
     number = random.randint(1, 100)
 
     return str(number)
+
+
+@app.route('/')
+def home():
+    return 'Hello, World!'
+
+
+@app.route('/about')
+def about():
+    return 'About'
