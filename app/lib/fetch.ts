@@ -47,14 +47,21 @@ export const rpc2 = async (
     path: string,
     symbol: string
 ) => {
-  const url = process.env.VERCEL_ENV === 'production'
+  // 判断是否在客户端
+  const isClient = typeof window !== 'undefined';
+
+  let url = process.env.VERCEL_ENV === 'production'
       ? process.env.API_URL
       : 'http://localhost:5328';
+  if (isClient){
+    url = "https://ztoolapi.vercel.app";
+  }
 
   const res = await fetch(url + path + `?stock=${symbol}`);
   let result = await res.text();
 
   // 返回json, 单一的字符串会被直接当成结果，如果真的是json格式，就会以json返回
-  // console.log(toJSON(result));
+  // 不会useclient, 这个逻辑都是在本地完成的吧
+  console.log(toJSON(result));
   return toJSON(result);
 };
