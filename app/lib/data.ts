@@ -9,6 +9,7 @@ import {
   Revenue,
   User,
 } from './definitions';
+import { rpc } from './fetch';
 import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {
@@ -20,12 +21,12 @@ export async function fetchRevenue() {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    console.log('Fetching revenue data...');
+    // console.log('Fetching revenue data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
-    console.log('Data fetch completed after 3 seconds.');
+    // console.log('Data fetch completed after 3 seconds.');
 
     return data.rows;
   } catch (error) {
@@ -56,6 +57,7 @@ export async function fetchLatestInvoices() {
   }
 }
 
+
 export async function fetchCardData() {
   noStore();
 
@@ -81,9 +83,13 @@ export async function fetchCardData() {
     const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
 
+    let result = await rpc("/api/dapan/all_pe");
+    const v1 = result["main_board_pe"];
+    const v2 = result["kcb_pe"];
+
     return {
-      numberOfCustomers,
-      numberOfInvoices,
+      v1,
+      v2,
       totalPaidInvoices,
       totalPendingInvoices,
     };
@@ -195,7 +201,7 @@ export async function fetchCustomers() {
     return customers;
   } catch (err) {
     console.error('Database Error:', err);
-    throw new Error('Failed to fetch all customers.');
+    throw new Error('Failed to fetch all singlestock.');
   }
 }
 

@@ -90,7 +90,7 @@ async function seedCustomers(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
-    // Create the "customers" table if it doesn't exist
+    // Create the "singlestock" table if it doesn't exist
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS customers (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -102,7 +102,7 @@ async function seedCustomers(client) {
 
     console.log(`Created "customers" table`);
 
-    // Insert data into the "customers" table
+    // Insert data into the "singlestock" table
     const insertedCustomers = await Promise.all(
       customers.map(
         (customer) => client.sql`
@@ -120,7 +120,7 @@ async function seedCustomers(client) {
       customers: insertedCustomers,
     };
   } catch (error) {
-    console.error('Error seeding customers:', error);
+    console.error('Error seeding singlestock:', error);
     throw error;
   }
 }

@@ -1,5 +1,5 @@
 import { fetchRevenue } from '@/app/lib/data';
-import { fpy } from '@/app/lib/fetch';
+import { rpc } from '@/app/lib/fetch';
 import { generateYAxis } from '@/app/lib/utils';
 import { lusitana } from '@/app/ui/fonts';
 import { CalendarIcon } from '@heroicons/react/24/outline';
@@ -15,7 +15,7 @@ export default async function RevenueChart() {
   const chartHeight = 350;
   // NOTE: comment in this code when you get to this point in the course
 
-  const result = await fpy("/api/python")
+  let result = await rpc("/api/dapan/all_pe")
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
 
   if (!revenue || revenue.length === 0) {
@@ -25,7 +25,7 @@ export default async function RevenueChart() {
   return (
     <div className="w-full md:col-span-4">
       <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
-        {`Recent Revenue ${result}`}
+        {`Recent Revenue ${result["kcb_pe"]}`}
       </h2>
       {/* NOTE: comment in this code when you get to this point in the course */}
 

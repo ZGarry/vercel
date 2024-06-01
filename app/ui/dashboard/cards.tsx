@@ -16,8 +16,8 @@ const iconMap = {
 
 export default async function CardWrapper() {
   const {
-    numberOfInvoices,
-    numberOfCustomers,
+    v1,
+    v2,
     totalPaidInvoices,
     totalPendingInvoices,
   } = await fetchCardData();
@@ -26,14 +26,14 @@ export default async function CardWrapper() {
     <>
       {/* NOTE: comment in this code when you get to this point in the course */}
 
-      <Card title="Collected" value={totalPaidInvoices} type="collected" />
-      <Card title="Pending" value={totalPendingInvoices} type="pending" />
-      <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
+      <Card title="上证正股PE" value={v1} type="collected" />
+      <Card title="上证创业板PE" value={v2} type="pending" />
+      {/* <Card title="Total Invoices" value={v1} type="invoices" />
       <Card
         title="Total Customers"
-        value={numberOfCustomers}
-        type="customers"
-      />
+        value={v2}
+        type="singlestock"
+      /> */}
     </>
   );
 }
